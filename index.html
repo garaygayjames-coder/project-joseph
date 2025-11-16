@@ -4,20 +4,224 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Joseph James O. Garaygay — Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #171923;
+      --text: #e9edf1;
+      --muted: #aab3c0;
+      --primary: #4f8cff;
+      --primary-700: #3b6fd6;
+      --accent: #9bffdc;
+      --border: #2a2f3a;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    .light {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #181a20;
+      --muted: #495062;
+      --primary: #2d6cdf;
+      --primary-700: #224fa8;
+      --accent: #0bb885;
+      --border: #e7ecf3;
+    }
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(79,140,255,0.08), transparent 60%);
+    }
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    #themeToggle {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .hero {
+      max-width: 1080px;
+      margin: 32px auto;
+      padding: 24px 16px 40px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-media img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      object-fit: cover;
+    }
+    .hero-text h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      margin: 0 0 8px;
+    }
+    .tagline {
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    .hero-actions .btn { margin-right: 8px; }
+    main {
+      max-width: 1080px;
+      margin: 0 auto 72px;
+      padding: 0 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .grid.two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .grid.three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .facts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .facts li {
+      padding: 10px 12px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.02);
+    }
+    .pill-list h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(79,140,255,0.12);
+      border: 1px solid var(--border);
+    }
+    .tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .tag {
+      font-size: 0.85rem;
+      background: rgba(11,184,133,0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+    .project {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .contact-form {
+      display: grid;
+      gap: 12px;
+    }
+    .form-row {
+      display: grid;
+      gap: 6px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    input::placeholder, textarea::placeholder {
+      color: var(--muted);
+    }
+    .btn {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn.primary {
+      background: var(--primary);
+      border-color: var(--primary-700);
+      color: white;
+    }
+    .btn.primary:hover {
+      background: var(--primary-700);
+    }
+    .form-status {
+      margin-top: 8px;
+      color: var(--accent);
+      min-height: 1em;
+    }
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--muted);
+    }
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .grid.two, .grid.three {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions .btn { margin-bottom: 8px; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav">
       <a class="brand" href="#">J.J.O. Garaygay</a>
-      <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button id="themeToggle">🌙</button>
     </nav>
     <div class="hero">
       <div class="hero-media">
-        <img src="assets/7MCz3DivP8DaobgkAGuvU.jpeg.png" alt="Portrait of Joseph James O. Garaygay" />
+        <img src="assets/vVioqHNHh8jrLqzhPLLdi.jpeg" alt="Portrait of Joseph James O. Garaygay" />
       </div>
       <div class="hero-text">
         <h1>Joseph James O. Garaygay</h1>
@@ -33,99 +237,8 @@
   <main>
     <section id="about" class="card">
       <h2>About</h2>
-      <p>
-        I’m a Computer Science student from General Santos City, passionate about building clean, useful, and human-centered software. 
-        I value clarity, integrity, and learning-by-doing—always connecting technology to real people and real needs.
-      </p>
+      <p>I’m a Computer Science student from General Santos City, passionate about building clean, useful, and human-centered software.</p>
     </section>
-
-    <section id="details" class="card">
-      <h2>Personal details</h2>
-      <div class="grid two">
-        <div>
-          <ul class="facts">
-            <li><strong>Name:</strong> Joseph James O. Garaygay</li>
-            <li><strong>Date of Birth:</strong> 04-19-06</li>
-            <li><strong>Gender:</strong> Male</li>
-            <li><strong>Age:</strong> 19</li>
-            <li><strong>Civil Status:</strong> Single</li>
-            <li><strong>Place of Birth:</strong> General Santos City</li>
-            <li><strong>Address:</strong> #032 Cagampang St., Brgy. Dadiangas South, General Santos City</li>
-            <li><strong>School:</strong> Notre Dame of Dadiangas University</li>
-            <li><strong>Course:</strong> Bachelor of Science in Computer Science</li>
-            <li><strong>Height:</strong> 5'8''</li>
-            <li><strong>Weight:</strong> 68kg</li>
-          </ul>
-        </div>
-        <div>
-          <ul class="facts">
-            <li><strong>Telephone:</strong> (083)320-6180</li>
-            <li><strong>Email Address:</strong> <a href="mailto:garaygayjosephjames@nddu.edu.ph">garaygayjosephjames@nddu.edu.ph</a></li>
-            <li><strong>Father's Name:</strong> Jaime N. Garaygay</li>
-            <li><strong>Father's Occupation:</strong> Family Business</li>
-            <li><strong>Father's Contact Number:</strong> 09174599907</li>
-            <li><strong>Mother's Name:</strong> Mylen Garaygay</li>
-            <li><strong>Mother's Occupation:</strong> Housewife</li>
-            <li><strong>Mother's Contact Number:</strong> 09169564872</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="card">
-      <h2>Skills and interests</h2>
-      <div class="grid three">
-        <div class="pill-list">
-          <h3>Technical</h3>
-          <div class="pills">
-            <span class="pill">HTML</span>
-            <span class="pill">CSS</span>
-            <span class="pill">JavaScript</span>
-            <span class="pill">Responsive Design</span>
-            <span class="pill">Version Control</span>
-          </div>
-        </div>
-        <div class="pill-list">
-          <h3>Interpersonal</h3>
-          <div class="pills">
-            <span class="pill">Collaboration</span>
-            <span class="pill">Communication</span>
-            <span class="pill">Integrity</span>
-            <span class="pill">Problem-solving</span>
-          </div>
-        </div>
-        <div class="pill-list">
-          <h3>Interests</h3>
-          <div class="pills">
-            <span class="pill">Human-centered tech</span>
-            <span class="pill">Education</span>
-            <span class="pill">Spiritual growth</span>
-            <span class="pill">Global dialogue</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="card">
-      <h2>Projects</h2>
-      <div class="grid two">
-        <article class="project">
-          <h3>Portfolio Website</h3>
-          <p>A clean, responsive personal site showcasing profile, skills, and contact information.</p>
-          <div class="tags">
-            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
-          </div>
-        </article>
-        <article class="project">
-          <h3>Community Learn App</h3>
-          <p>Concept for an app that turns complex topics into bite-sized lessons with visuals and mnemonics.</p>
-          <div class="tags">
-            <span class="tag">UX</span><span class="tag">Education</span><span class="tag">Prototype</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
     <section id="contact" class="card">
       <h2>Contact</h2>
       <form id="contactForm" class="contact-form" novalidate>
@@ -142,16 +255,4 @@
           <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
         </div>
         <button class="btn primary" type="submit">Send</button>
-        <p id="formStatus" class="form-status" aria-live="polite"></p>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Joseph James O. Garaygay — General Santos City</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
+        <p id="formStatus" class="form-status" aria-live="polite"></
